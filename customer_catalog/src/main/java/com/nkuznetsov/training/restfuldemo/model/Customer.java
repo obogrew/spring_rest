@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -41,10 +42,19 @@ public class Customer {
 	private Date birthDate;
 
 	
-	@OneToMany(mappedBy = "customer")
-
-	private final List<Characteristic> characteristics = new ArrayList<Characteristic>();
-    
+	@OneToMany(mappedBy = "customer",        cascade = CascadeType.ALL)
+	private  List<Characteristic> characteristics = new ArrayList<Characteristic>();
+	
+	public void addCharacteristic(Characteristic characteristic) {
+		 	characteristics.add(characteristic);
+		 	characteristic.setCustomer(this);
+	}
+	 
+	public void removeCharacteristic(Characteristic characteristic) {
+	    	characteristics.remove(characteristic);
+	    	characteristic.setCustomer(null);
+	}
+	
 	public List<Characteristic> getCharacteristics() {
         return characteristics;
     }

@@ -32,17 +32,17 @@ public class CustomerInitializer implements CommandLineRunner {
 	cust.setLastName("Petrov");
 	
 	Characteristic ch = new Characteristic();
-	ch.setCharId(new Long(1));
+
 	ch.setCharacteristicsName("Name1");
 	ch.setCharacteristicsValue("Val11");
-	cust.getCharacteristics().add(ch);
+	cust.addCharacteristic(ch);
 	
 	ch = new Characteristic();
-	ch.setCharId(new Long(2));
+
 
 	ch.setCharacteristicsName("Imya");
 	ch.setCharacteristicsValue("Znachenie");
-	cust.getCharacteristics().add(ch);
+	cust.addCharacteristic(ch);
 	
 	customerRepository.save(cust);
 	
